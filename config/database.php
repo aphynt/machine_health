@@ -128,6 +128,19 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
+        'pgsql_machine_health' => [
+            'driver' => 'pgsql',
+            'host' => '10.10.2.111',
+            'port' => '5432',
+            'database' => 'machine_health',
+            'username' => 'postgres',
+            'password' => 'ISI_PASSWORD_POSTGRES',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => 'prefer',
+        ],
 
     ],
 
