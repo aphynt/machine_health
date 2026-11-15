@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Log;
 
 class CatErrorCodeService
 {
-    // private const CONNECTION = 'sqlsrv';
-    // private const TABLE = 'OPR_CAT_ERROR_CODE';
+    private const CONNECTION = 'sqlsrv';
+    private const TABLE = 'OPR_CAT_ERROR_CODE';
 
-    private const CONNECTION = 'pgsql_machine_health';
-    private const TABLE = 'public.opr_cat_error_code';
+    // private const CONNECTION = 'pgsql_machine_health';
+    // private const TABLE = 'public.opr_cat_error_code';
 
     public function previewFaultCodes(array $faultCodes): array
     {
@@ -56,45 +56,45 @@ class CatErrorCodeService
                     $eid = $this->normalizeCode($data['Fault_Code_Eid'] ?? 0);
                     $spn = $this->normalizeCode($data['Fault_Code_Spn'] ?? 0);
 
-                    // $query = DB::connection(self::CONNECTION)
-                    //     ->table(self::TABLE)
-                    //     ->where('Asset_Serial_Number', $assetSerialNumber)
-                    //     ->where('Fault_Date', $faultDate)
-                    //     ->whereRaw("ISNULL([Type], '') = ?", [$type])
-                    //     ->whereRaw("ISNULL([Source], '') = ?", [$source])
-                    //     ->whereRaw('ISNULL(Fault_Code_Cid, 0) = ?', [$cid])
-                    //     ->whereRaw('ISNULL(Fault_Code_Fmi, 0) = ?', [$fmi])
-                    //     ->whereRaw('ISNULL(Fault_Code_Eid, 0) = ?', [$eid])
-                    //     ->whereRaw('ISNULL(Fault_Code_Spn, 0) = ?', [$spn]);
-
-                    // if (
-                    //     (int) $cid === 0
-                    //     && (int) $fmi === 0
-                    //     && (int) $eid === 0
-                    //     && (int) $spn === 0
-                    // ) {
-                    //     $query->whereRaw("ISNULL(Fault_Code, '') = ?", [$faultCode]);
-                    // }
-
                     $query = DB::connection(self::CONNECTION)
                         ->table(self::TABLE)
-                        ->where('asset_serial_number', $assetSerialNumber)
-                        ->where('fault_date', $faultDate)
-                        ->whereRaw("COALESCE(type, '') = ?", [$type])
-                        ->whereRaw("COALESCE(source, '') = ?", [$source])
-                        ->whereRaw('COALESCE(fault_code_cid, 0) = ?', [$cid])
-                        ->whereRaw('COALESCE(fault_code_fmi, 0) = ?', [$fmi])
-                        ->whereRaw('COALESCE(fault_code_eid, 0) = ?', [$eid])
-                        ->whereRaw('COALESCE(fault_code_spn, 0) = ?', [$spn]);
+                        ->where('Asset_Serial_Number', $assetSerialNumber)
+                        ->where('Fault_Date', $faultDate)
+                        ->whereRaw("ISNULL([Type], '') = ?", [$type])
+                        ->whereRaw("ISNULL([Source], '') = ?", [$source])
+                        ->whereRaw('ISNULL(Fault_Code_Cid, 0) = ?', [$cid])
+                        ->whereRaw('ISNULL(Fault_Code_Fmi, 0) = ?', [$fmi])
+                        ->whereRaw('ISNULL(Fault_Code_Eid, 0) = ?', [$eid])
+                        ->whereRaw('ISNULL(Fault_Code_Spn, 0) = ?', [$spn]);
 
                     if (
-                        (int) $cid === 0 &&
-                        (int) $fmi === 0 &&
-                        (int) $eid === 0 &&
-                        (int) $spn === 0
+                        (int) $cid === 0
+                        && (int) $fmi === 0
+                        && (int) $eid === 0
+                        && (int) $spn === 0
                     ) {
-                        $query->whereRaw("COALESCE(fault_code, '') = ?", [$faultCode]);
+                        $query->whereRaw("ISNULL(Fault_Code, '') = ?", [$faultCode]);
                     }
+
+                    // $query = DB::connection(self::CONNECTION)
+                    //     ->table(self::TABLE)
+                    //     ->where('asset_serial_number', $assetSerialNumber)
+                    //     ->where('fault_date', $faultDate)
+                    //     ->whereRaw("COALESCE(type, '') = ?", [$type])
+                    //     ->whereRaw("COALESCE(source, '') = ?", [$source])
+                    //     ->whereRaw('COALESCE(fault_code_cid, 0) = ?', [$cid])
+                    //     ->whereRaw('COALESCE(fault_code_fmi, 0) = ?', [$fmi])
+                    //     ->whereRaw('COALESCE(fault_code_eid, 0) = ?', [$eid])
+                    //     ->whereRaw('COALESCE(fault_code_spn, 0) = ?', [$spn]);
+
+                    // if (
+                    //     (int) $cid === 0 &&
+                    //     (int) $fmi === 0 &&
+                    //     (int) $eid === 0 &&
+                    //     (int) $spn === 0
+                    // ) {
+                    //     $query->whereRaw("COALESCE(fault_code, '') = ?", [$faultCode]);
+                    // }
 
                     if ($query->exists()) {
                         $skipped++;
@@ -103,72 +103,72 @@ class CatErrorCodeService
 
                     DB::connection(self::CONNECTION)
                         ->table(self::TABLE)
-                        // ->insert([
-                        //     'Asset_Serial_Number' => $assetSerialNumber,
-                        //     'Make' => $data['Make'],
-                        //     'Model' => $data['Model'],
-                        //     'Name' => $data['Name'],
-                        //     'Fault_Code' => $faultCode,
-                        //     'Fault_Code_Cid' => $cid,
-                        //     'Fault_Code_Fmi' => $fmi,
-                        //     'Fault_Code_Eid' => $eid,
-                        //     'Fault_Code_Spn' => $spn,
-                        //     'Severity' => $data['Severity'],
-                        //     'Fault_Date' => $faultDate,
-                        //     'Hours_Value' => $data['Hours_Value'],
-                        //     'Service_Meter_Unit_Hours' => $data['Service_Meter_Unit_Hours'],
-                        //     'Hours_Timestamp' => $data['Hours_Timestamp'],
-                        //     'Odometer_Value' => $data['Odometer_Value'],
-                        //     'Service_Meter_Unit_Odo' => $data['Service_Meter_Unit_Odo'],
-                        //     'Odometer_Timestamp' => $data['Odometer_Timestamp'],
-                        //     'Lifetime_Energy_Generated_Value' => $data['Lifetime_Energy_Generated_Value'],
-                        //     'Service_Meter_Unit_Energy' => $data['Service_Meter_Unit_Energy'],
-                        //     'Lifetime_Energy_Generated_Timestamp' => $data['Lifetime_Energy_Generated_Timestamp'],
-                        //     'Lifetime_Fuel_Consumed_Value' => $data['Lifetime_Fuel_Consumed_Value'],
-                        //     'Service_Meter_Unit' => $data['Service_Meter_Unit'],
-                        //     'Lifetime_Fuel_Consumed_Timestamp' => $data['Lifetime_Fuel_Consumed_Timestamp'],
-                        //     'Source' => $source,
-                        //     'Type' => $type,
-                        //     'Occurrences' => $data['Occurrences'],
-                        //     'Fault_Location' => $data['Fault_Location'],
-                        //     'CREATED_AT' => now(),
-                        //     'Severity_Level1' => $data['Severity_Level1'],
-                        //     'Severity_Level2' => $data['Severity_Level2'],
-                        //     'Severity_Level3' => $data['Severity_Level3'],
-                        // ]);
                         ->insert([
-                            'asset_serial_number' => $assetSerialNumber,
-                            'make' => $data['Make'],
-                            'model' => $data['Model'],
-                            'name' => $data['Name'],
-                            'fault_code' => $faultCode,
-                            'fault_code_cid' => $cid,
-                            'fault_code_fmi' => $fmi,
-                            'fault_code_eid' => $eid,
-                            'fault_code_spn' => $spn,
-                            'severity' => $data['Severity'],
-                            'fault_date' => $faultDate,
-                            'hours_value' => $data['Hours_Value'],
-                            'service_meter_unit_hours' => $data['Service_Meter_Unit_Hours'],
-                            'hours_timestamp' => $data['Hours_Timestamp'],
-                            'odometer_value' => $data['Odometer_Value'],
-                            'service_meter_unit_odo' => $data['Service_Meter_Unit_Odo'],
-                            'odometer_timestamp' => $data['Odometer_Timestamp'],
-                            'lifetime_energy_generated_value' => $data['Lifetime_Energy_Generated_Value'],
-                            'service_meter_unit_energy' => $data['Service_Meter_Unit_Energy'],
-                            'lifetime_energy_generated_timestamp' => $data['Lifetime_Energy_Generated_Timestamp'],
-                            'lifetime_fuel_consumed_value' => $data['Lifetime_Fuel_Consumed_Value'],
-                            'service_meter_unit' => $data['Service_Meter_Unit'],
-                            'lifetime_fuel_consumed_timestamp' => $data['Lifetime_Fuel_Consumed_Timestamp'],
-                            'source' => $source,
-                            'type' => $type,
-                            'occurrences' => $data['Occurrences'],
-                            'fault_location' => $data['Fault_Location'],
-                            'created_at' => now(),
-                            'severity_level1' => $data['Severity_Level1'],
-                            'severity_level2' => $data['Severity_Level2'],
-                            'severity_level3' => $data['Severity_Level3'],
+                            'Asset_Serial_Number' => $assetSerialNumber,
+                            'Make' => $data['Make'],
+                            'Model' => $data['Model'],
+                            'Name' => $data['Name'],
+                            'Fault_Code' => $faultCode,
+                            'Fault_Code_Cid' => $cid,
+                            'Fault_Code_Fmi' => $fmi,
+                            'Fault_Code_Eid' => $eid,
+                            'Fault_Code_Spn' => $spn,
+                            'Severity' => $data['Severity'],
+                            'Fault_Date' => $faultDate,
+                            'Hours_Value' => $data['Hours_Value'],
+                            'Service_Meter_Unit_Hours' => $data['Service_Meter_Unit_Hours'],
+                            'Hours_Timestamp' => $data['Hours_Timestamp'],
+                            'Odometer_Value' => $data['Odometer_Value'],
+                            'Service_Meter_Unit_Odo' => $data['Service_Meter_Unit_Odo'],
+                            'Odometer_Timestamp' => $data['Odometer_Timestamp'],
+                            'Lifetime_Energy_Generated_Value' => $data['Lifetime_Energy_Generated_Value'],
+                            'Service_Meter_Unit_Energy' => $data['Service_Meter_Unit_Energy'],
+                            'Lifetime_Energy_Generated_Timestamp' => $data['Lifetime_Energy_Generated_Timestamp'],
+                            'Lifetime_Fuel_Consumed_Value' => $data['Lifetime_Fuel_Consumed_Value'],
+                            'Service_Meter_Unit' => $data['Service_Meter_Unit'],
+                            'Lifetime_Fuel_Consumed_Timestamp' => $data['Lifetime_Fuel_Consumed_Timestamp'],
+                            'Source' => $source,
+                            'Type' => $type,
+                            'Occurrences' => $data['Occurrences'],
+                            'Fault_Location' => $data['Fault_Location'],
+                            'CREATED_AT' => now(),
+                            'Severity_Level1' => $data['Severity_Level1'],
+                            'Severity_Level2' => $data['Severity_Level2'],
+                            'Severity_Level3' => $data['Severity_Level3'],
                         ]);
+                        // ->insert([
+                        //     'asset_serial_number' => $assetSerialNumber,
+                        //     'make' => $data['Make'],
+                        //     'model' => $data['Model'],
+                        //     'name' => $data['Name'],
+                        //     'fault_code' => $faultCode,
+                        //     'fault_code_cid' => $cid,
+                        //     'fault_code_fmi' => $fmi,
+                        //     'fault_code_eid' => $eid,
+                        //     'fault_code_spn' => $spn,
+                        //     'severity' => $data['Severity'],
+                        //     'fault_date' => $faultDate,
+                        //     'hours_value' => $data['Hours_Value'],
+                        //     'service_meter_unit_hours' => $data['Service_Meter_Unit_Hours'],
+                        //     'hours_timestamp' => $data['Hours_Timestamp'],
+                        //     'odometer_value' => $data['Odometer_Value'],
+                        //     'service_meter_unit_odo' => $data['Service_Meter_Unit_Odo'],
+                        //     'odometer_timestamp' => $data['Odometer_Timestamp'],
+                        //     'lifetime_energy_generated_value' => $data['Lifetime_Energy_Generated_Value'],
+                        //     'service_meter_unit_energy' => $data['Service_Meter_Unit_Energy'],
+                        //     'lifetime_energy_generated_timestamp' => $data['Lifetime_Energy_Generated_Timestamp'],
+                        //     'lifetime_fuel_consumed_value' => $data['Lifetime_Fuel_Consumed_Value'],
+                        //     'service_meter_unit' => $data['Service_Meter_Unit'],
+                        //     'lifetime_fuel_consumed_timestamp' => $data['Lifetime_Fuel_Consumed_Timestamp'],
+                        //     'source' => $source,
+                        //     'type' => $type,
+                        //     'occurrences' => $data['Occurrences'],
+                        //     'fault_location' => $data['Fault_Location'],
+                        //     'created_at' => now(),
+                        //     'severity_level1' => $data['Severity_Level1'],
+                        //     'severity_level2' => $data['Severity_Level2'],
+                        //     'severity_level3' => $data['Severity_Level3'],
+                        // ]);
 
                     $inserted++;
                 } catch (\Throwable $e) {
