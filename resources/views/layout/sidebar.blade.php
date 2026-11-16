@@ -48,6 +48,40 @@
     line-height: 1;
 }
 
+.nav-link.coming-soon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(217, 154, 61, .12);
+    border: 1px solid rgba(217, 154, 61, .25);
+    border-radius: 6px;
+    margin: 3px 8px;
+    padding: 9px 12px;
+}
+.nav-link.coming-soon span {
+    flex: 1;
+    min-width: 0;
+    color: #2e210a;
+}
+.nav-link.coming-soon .menu-icon {
+    color: #d99a3d;
+}
+.nav-link.coming-soon::after {
+    content: "SOON";
+    padding: 3px 6px;
+    border-radius: 4px;
+    background: #d99a3d;
+    color: #222a32;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .4px;
+    flex-shrink: 0;
+}
+.nav-link.coming-soon:hover {
+    background: rgba(217, 154, 61, .22);
+    border-color: rgba(217, 154, 61, .5);
+}
+
 @media (min-width: 992px) {
     body.mh-sidebar-collapsed .startbar {
         transform: translateX(-100%) !important;
@@ -122,14 +156,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link coming-soon" href="#" data-feature="Trend Historical Data">
                             <i class="iconoir-graph-up menu-icon"></i>
                             <span>Trend Historical Data</span>
                         </a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link coming-soon" href="#" data-feature="Worst Eq. Rank by FOCUS">
                             <i class="iconoir-warning-triangle menu-icon"></i>
                             <span>Worst Eq. Rank by FOCUS</span>
                         </a>
@@ -147,7 +180,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link coming-soon" href="#" data-feature="Periodic Time Series">
                             <i class="iconoir-timer menu-icon"></i>
                             <span>Periodic Time Series</span>
                         </a>
@@ -169,6 +202,34 @@
                            href="{{ route('caterpillar.fault-code.raw-data') }}">
                             <i class="iconoir-activity menu-icon"></i>
                             <span>Caterpillar Fault Code Raw</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link coming-soon" href="#" data-feature="Komatsu Fault Code Raw">
+                            <i class="iconoir-activity menu-icon"></i>
+                            <span>Komatsu Fault Code Raw</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link coming-soon" href="#" data-feature="Caterpillar Last Updated JSON File 20Hours">
+                            <i class="iconoir-activity menu-icon"></i>
+                            <span>Caterpillar Last Updated JSON File 20Hours</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link coming-soon" href="#" data-feature="Komatsu Last Updated VHMS 20Hours">
+                            <i class="iconoir-activity menu-icon"></i>
+                            <span>Komatsu Last Updated VHMS 20Hours</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link coming-soon" href="#" data-feature="Periodic Operator Induced YTD Resume">
+                            <i class="iconoir-activity menu-icon"></i>
+                            <span>Periodic Operator Induced YTD Resume</span>
                         </a>
                     </li>
 
@@ -220,9 +281,9 @@
                         Created by IT — This system is currently under development.
                     </p>
 
-                    <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">
-                        Development Stage
-                    </span>
+                    <a href="{{ route('home') }}" class="badge bg-warning text-dark px-3 py-2 rounded-pill text-decoration-none">
+                        <i class="iconoir-home me-1"></i> Kembali ke Beranda
+                    </a>
                 </div>
             </div>
         </div>
@@ -312,5 +373,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateToggle();
     setTimeout(positionToggle, 100);
+});
+
+document.querySelectorAll('.coming-soon').forEach(function (menu) {
+    menu.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const feature = this.dataset.feature;
+
+        Swal.fire({
+            icon: 'info',
+            title: '<span style="color: #ffffff;">Fitur Dalam Pengembangan</span>',
+            html: `
+                <p style="margin-bottom: 8px;">
+                    <strong>${feature}</strong>
+                </p>
+                <p style="font-size: 13px; color: #888;">
+                    Fitur ini sedang dalam tahap pengembangan
+                    dan akan tersedia pada pembaruan sistem berikutnya.
+                </p>
+            `,
+            confirmButtonText: 'Mengerti',
+            confirmButtonColor: '#d99a3d',
+            background: '#222a32',
+            color: '#edf0f2',
+            allowOutsideClick: true
+        });
+    });
 });
 </script>

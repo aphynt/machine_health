@@ -29,7 +29,7 @@
     .oi-metric .tag{display:block;text-transform:uppercase;color:#7b8ca0;font-size:10px;font-weight:800;margin-bottom:5px}
     .oi-metric .num{font-size:25px;font-weight:850;letter-spacing:-.6px;line-height:1.05;color:#284765}
     .oi-metric i{font-size:22px;color:#8fb0d9}
-    .oi-dashboard{display:grid;grid-template-columns:minmax(340px,41%) minmax(0,59%);gap:12px;margin-bottom:12px}
+    .oi-dashboard{display:grid;grid-template-columns:minmax(340px,52%) minmax(0,48%);gap:12px;margin-bottom:12px}
     .oi-bottom{display:grid;grid-template-columns:1.12fr .88fr .88fr;gap:12px}
     .oi-panel-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid #e8edf4;background:#fafcff}
     .oi-panel-head strong{font-size:12px;font-weight:800;color:#2f5077}

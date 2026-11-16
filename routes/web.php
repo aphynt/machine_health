@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index'])->name('home');
 
 Route::get('/cat/fault-codes', [CatTokenController::class, 'index']);
 Route::get('/cat/fault-codes/preview', [CatTokenController::class, 'preview']);
