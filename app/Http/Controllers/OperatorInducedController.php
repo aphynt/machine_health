@@ -308,7 +308,7 @@ class OperatorInducedController extends Controller
                 $events->selectRaw(<<<'SQL'
                     CAST('Komatsu' AS NVARCHAR(20)) AS [Manufacturer],
                     CAST(NULL AS NVARCHAR(100)) AS [Model],
-                    CONVERT(NVARCHAR(100), [F].[SN]) AS [Name],
+                    CONVERT(NVARCHAR(100), [F].[NAME]) AS [Name],
                     CONVERT(NVARCHAR(500), [F].[Error_Message]) AS [Fault_Code],
                     COALESCE(
                         CASE WHEN TRY_CONVERT(DATETIME2, [F].[From_Date_Time]) >= '2000-01-01'

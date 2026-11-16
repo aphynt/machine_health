@@ -27,7 +27,6 @@
             --shadow: 0 22px 70px rgba(0,0,0,.25);
             --max: 1360px;
         }
-        * { box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 96px; }
         body { margin: 0; min-width: 320px; background: var(--bg); color: var(--text);
             font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -221,13 +220,134 @@
             .footer-inner{align-items:flex-start;flex-direction:column}.video-control{right:12px;bottom:11px}
         }
         @media(prefers-reduced-motion:reduce){ html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important} }
+        :root {
+            color-scheme: dark;
+            --bg: #171c21;
+            --bg-soft: #1d242b;
+            --surface: #222a32;
+            --surface-2: #28323b;
+            --text: #edf0f2;
+            --muted: #aab3bb;
+            --soft: #d4dbe0;
+            --border: #39434c;
+            --primary: #d99a3d;
+            --primary-soft: rgba(217,154,61,.12);
+            --cyan: #9ab8c4;
+            --green: #7fc49b;
+            --amber: #e0ad61;
+            --radius: 5px;
+            --shadow: none;
+            --max: 1280px;
+        }
+        body { background: var(--bg); font-family: "Segoe UI", Arial, sans-serif; font-size: 14px; }
+        body::before { display: none; }
+        .container { width: min(calc(100% - 48px),var(--max)); }
+        .site-header { background: #202830; border-bottom: 1px solid #3b454e; backdrop-filter: none; }
+        .header-content { min-height: 64px; }
+        .brand { gap: 10px; }
+        .brand-logo { width: 42px; height: 42px; }
+        .brand-name { font-size: 12px; font-weight: 700; letter-spacing: .07em; }
+        .brand-sub { font-size: 9px; letter-spacing: .04em; font-weight: 500; }
+        .desktop-nav { gap: 24px; font-size: 12px; font-weight: 600; }
+        .desktop-nav a { padding-block: 23px; }
+        .desktop-nav a.active::after { height: 2px; border-radius: 0; }
+        .icon-btn, .btn, .filter-chip, .search-field, .section-count, .module-status { border-radius: 4px; }
+        .btn { min-height: 37px; padding: 8px 13px; font-size: 11px; font-weight: 650; }
+        .btn.primary { background: #d99a3d; color: #171c21; box-shadow: none; }
+        .btn.primary:hover { background: #e8aa50; }
+        .btn.ghost { background: #252f38; border-color: #56616b; }
+        .hero { min-height: 0; background: #202a33; border-bottom: 1px solid #3b454e; }
+        .hero-bg { background: linear-gradient(110deg,#202a33,#26333d); }
+        .hero-mask { background: linear-gradient(90deg,rgba(24,31,37,.92),rgba(24,31,37,.55)); }
+        .hero-grid { min-height: 0; padding-block: 54px 52px; grid-template-columns: minmax(0,1.1fr) minmax(310px,.8fr); gap: 48px; }
+        .eyebrow, .section-overline { color: #d9a454; font-size: 10px; letter-spacing: .12em; }
+        .eyebrow::before { background: #d9a454; width: 22px; height: 2px; }
+        .hero h1 { margin: 17px 0 15px; font-size: clamp(34px,3.6vw,49px); line-height: 1.12; letter-spacing: -.025em; font-weight: 700; }
+        .hero h1 em { color: #e3ad5e; }
+        .hero-description { max-width: 550px; color: #c0c8ce; font-size: 13px; line-height: 1.7; margin-bottom: 22px; }
+        .hero-tags { margin-top: 24px; gap: 18px; font-size: 10px; color: #b6c0c7; }
+        .hero-tags .icon { color: #d9a454; }
+        .console { background: #252f38; border: 1px solid #46515b; border-radius: 5px; box-shadow: none; backdrop-filter: none; }
+        .console-head { padding: 16px 17px; border-bottom: 1px solid #414c55; }
+        .console-eyebrow { font-size: 9px; letter-spacing: .1em; }
+        .console-title { font-size: 14px; font-weight: 700; }
+        .console-badge { border-radius: 3px; color: #e7b66f; background: #3a3328; border-color: #665137; font-size: 9px; }
+        .console-links { padding: 5px 8px; }
+        .console-item { padding: 11px 9px; border-radius: 3px; }
+        a.console-item:hover { background: #303d47; border-color: #596773; }
+        .console-icon { width: 32px; height: 32px; border-radius: 4px; color: #e0b36f; background: #3b352c; }
+        .console-copy strong { font-size: 11px; font-weight: 650; }
+        .console-copy small { font-size: 10px; color: #b0bbc3; }
+        .console-footer { padding: 11px 16px; border-top: 1px solid #414c55; font-size: 9px; }
+        .value-strip { background: #1d252c; }
+        .value-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+        .value-item { padding: 17px 20px; gap: 10px; }
+        .value-icon { width: 34px; height: 34px; border-radius: 4px; color: #e0b36f; background: #39342c; }
+        .value-item strong { font-size: 10px; font-weight: 700; }
+        .value-item p { font-size: 10px; color: #aeb8c0; }
+        .section { padding: 58px 0; }
+        .section-header { margin-bottom: 22px; }
+        .section-header h2, .work-copy h2 { font-size: clamp(24px,2.5vw,32px); font-weight: 650; letter-spacing: -.02em; }
+        .section-header p { font-size: 12px; color: #aeb8c0; }
+        .section-count { padding: 8px 10px; font-size: 10px; background: #202a32; }
+        .tools { margin-bottom: 16px; }
+        .filter-chip { padding: 8px 12px; font-size: 10px; font-weight: 650; background: #202a32; }
+        .filter-chip[aria-pressed="true"] { background: #3b3327; color: #edbd78; border-color: #86683f; }
+        .search-field { background: #202a32; }
+        .search-field input { min-height: 38px; font-size: 11px; }
+        .module-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+        .module-card { min-height: 220px; padding: 18px; border-radius: 5px; background: #202a32; border: 1px solid #3b454e; box-shadow: none; }
+        .module-card::before { display: none; }
+        .module-card:hover { transform: none; border-color: #9b7847; box-shadow: none; background: #242f38; }
+        .module-icon { width: 37px; height: 37px; border-radius: 4px; color: #e0b36f; background: #39342c; border: 0; }
+        .module-icon.cyan { color: #9ab8c4; background: #2e3b42; }
+        .module-icon.amber { color: #e0b36f; background: #39342c; }
+        .module-icon.green { color: #8fc7a5; background: #2c3b35; }
+        .module-status { padding: 5px 7px; font-size: 9px; background: #2b343c; }
+        .module-status.available { color: #8fc7a5; background: #293a32; border-color: #45634f; }
+        .module-card h3 { margin: 18px 0 7px; font-size: 14px; font-weight: 650; }
+        .module-card p { font-size: 11px; line-height: 1.6; color: #b0bac2; }
+        .module-bottom { padding-top: 12px; }
+        .module-type, .module-cta { font-size: 9px; }
+        .module-cta { color: #e2b36c; }
+        .work-section { background: #1d252c; border-color: #39434c; }
+        .work-grid { gap: 38px; }
+        .work-copy p { font-size: 12px; color: #aeb8c0; }
+        .work-steps { gap: 8px; }
+        .work-step { padding: 16px 13px; border-radius: 4px; background: #252f38; border: 1px solid #3b454e; }
+        .step-no { margin-bottom: 18px; color: #d9a454; font-size: 9px; }
+        .work-step .icon { width: 20px; height: 20px; color: #d9a454; }
+        .work-step h3 { font-size: 11px; font-weight: 650; }
+        .work-step p { font-size: 10px; color: #aeb8c0; }
+        .end-banner { padding: 25px 28px; border-radius: 5px; background: #252f38; border: 1px solid #46515b; }
+        .end-banner::after { display: none; }
+        .end-banner h2 { font-size: 20px; font-weight: 650; }
+        .end-banner p { font-size: 11px; color: #b0bac2; }
+        .footer { padding: 22px 0; background: #141a1f; }
+        .footer-inner { font-size: 10px; }
+        .footer strong { color: #d5dce1; font-weight: 650; }
+        .mobile-panel { background: #202a32; }
+        @media(max-width:900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+            .console { max-width: 100%; }
+            .module-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+        }
+        @media(max-width:600px) {
+            .container { width: min(calc(100% - 30px),var(--max)); }
+            .hero-grid { padding-block: 38px; }
+            .hero h1 { font-size: 36px; }
+            .value-item,.value-item:first-child,.value-item:last-child { padding: 14px 0; }
+            .module-grid { grid-template-columns: 1fr; }
+            .section { padding-block: 44px; }
+            .work-steps { grid-template-columns: 1fr; }
+            .end-banner { padding: 22px 18px; }
+        }
     </style>
 </head>
 <body>
 @php
-    // Nama route lama dipertahankan; tampilkan link hanya jika route terdaftar di aplikasi.
     $mhRouteNames = [
-        'realtime' => 'realtime-series.inde',
+        'realtime' => 'realtime-series.index',
         'periodic' => 'periodic-series.index',
         'fault' => 'caterpillar.fault-code.raw-data',
         'induced' => 'operator-induced.index',
@@ -264,7 +384,7 @@
             src="{{ asset('dashboard/assets/images/logos/logo.png') }}"
             alt="Machine Health Logo"
             class="brand-logo"
-        ><span><strong class="brand-name">MACHINE HEALTH</strong><small class="brand-sub">sample by  PT SIMS JAYA KALTIM</small></span>
+        ><span><strong class="brand-name">MACHINE HEALTH</strong><small class="brand-sub">PT SIMS JAYA KALTIM</small></span>
         </a>
         <nav class="desktop-nav" aria-label="Navigasi utama">
             <a href="#beranda" class="active">Beranda</a>
@@ -285,15 +405,12 @@
 <main>
     <section class="hero" id="beranda" aria-labelledby="heroTitle">
         <div class="hero-bg"></div>
-        <video class="hero-video" id="heroVideo" muted loop playsinline preload="none"
-               poster="{{ asset('assets/office.jpg') }}" data-video-src="{{ asset('assets/0922.mp4') }}"
-               aria-hidden="true"></video>
         <div class="hero-mask"></div>
         <div class="container hero-grid">
             <div class="hero-text">
-                <span class="eyebrow">Integrated Mining Intelligence</span>
-                <h1 id="heroTitle">Pantau kondisi unit.<br><em>Ambil keputusan lebih cepat.</em></h1>
-                <p class="hero-description">Satu portal internal untuk melihat parameter kesehatan alat, menelusuri fault code, menganalisis tren, dan memetakan kejadian di area operasional.</p>
+                <span class="eyebrow">MACHINE HEALTH · OPERATIONS</span>
+                <h1 id="heroTitle">Equipment condition<br><em>monitoring portal</em></h1>
+                <p class="hero-description">Portal internal untuk memantau parameter equipment, melihat histori data, dan meninjau fault yang tercatat pada unit.</p>
                 <div class="hero-buttons">
                     <a href="#modules" class="btn primary">Eksplorasi Modul <svg class="icon sm"><use href="#i-arrow"/></svg></a>
                     @if($mhLinks['realtime'])
@@ -303,13 +420,13 @@
                     @endif
                 </div>
                 <div class="hero-tags">
-                    <span><svg class="icon"><use href="#i-shield"/></svg> Internal Operations</span>
-                    <span><svg class="icon"><use href="#i-activity"/></svg> Condition Monitoring</span>
-                    <span><svg class="icon"><use href="#i-chart"/></svg> Data-driven Insights</span>
+                    <span><svg class="icon"><use href="#i-shield"/></svg> Operational Data</span>
+                    <span><svg class="icon"><use href="#i-activity"/></svg> Equipment Health</span>
+                    <span><svg class="icon"><use href="#i-chart"/></svg> Trend & Diagnostics</span>
                 </div>
             </div>
-            <aside class="console" aria-label="Akses cepat modul">
-                <div class="console-head"><div><div class="console-eyebrow">Operation Workspace</div><h2 class="console-title">Akses cepat modul</h2></div><span class="console-badge">INTERNAL</span></div>
+            <aside class="console" aria-label="Modul operasional">
+                <div class="console-head"><div><div class="console-eyebrow">QUICK ACCESS</div><h2 class="console-title">Modul operasional</h2></div><span class="console-badge">INTERNAL</span></div>
                 <div class="console-links">
                     @if($mhLinks['realtime'])<a class="console-item" href="{{ $mhLinks['realtime'] }}">@else<div class="console-item console-disabled">@endif
                         <span class="console-icon"><svg class="icon"><use href="#i-activity"/></svg></span>
@@ -335,7 +452,6 @@
                 <div class="console-footer"><svg class="icon sm"><use href="#i-shield"/></svg> Tautan aktif mengikuti route yang tersedia di Laravel.</div>
             </aside>
         </div>
-        <button id="videoToggle" class="video-control" type="button" aria-label="Jeda video latar" hidden><svg class="icon sm"><use href="#i-pause"/></svg><span>Jeda video</span></button>
     </section>
     <div class="value-strip" aria-label="Cakupan portal">
         <div class="container value-grid">
@@ -347,8 +463,8 @@
     <section class="section" id="modules" aria-labelledby="modulesTitle">
         <div class="container">
             <div class="section-header">
-                <div><span class="section-overline">Workspace / Modules</span><h2 id="modulesTitle">Pilih kebutuhan analisis Anda</h2>
-                    <p>Mulai dari monitoring real-time hingga analisis penyebab gangguan. Gunakan pencarian untuk menemukan modul yang dibutuhkan lebih cepat.</p></div>
+                <div><span class="section-overline">MODULE DIRECTORY</span><h2 id="modulesTitle">Daftar modul</h2>
+                    <p>Pilih modul yang ingin dibuka. Status menunjukkan apakah halaman sudah tersedia.</p></div>
                 <span class="section-count" id="resultCount" aria-live="polite">6 modul tersedia di katalog</span>
             </div>
             <div class="tools">
@@ -401,8 +517,8 @@
     </section>
     <section class="section work-section" id="workflow" aria-labelledby="workflowTitle">
         <div class="container work-grid">
-            <div class="work-copy"><span class="section-overline">Operational Workflow</span><h2 id="workflowTitle">Satu alur kerja, dari pantauan ke tindak lanjut.</h2>
-                <p>Portal ini membantu tim operation, FMS, dan maintenance bekerja dari sumber informasi yang terstruktur. Pilih modul, pelajari data, lalu prioritaskan investigasi dengan lebih cepat.</p>
+            <div class="work-copy"><span class="section-overline">HOW IT WORKS</span><h2 id="workflowTitle">Penggunaan sistem</h2>
+                <p>Gunakan modul monitoring untuk melihat parameter unit. Buka data historis atau fault code saat diperlukan untuk pemeriksaan lebih lanjut.</p>
             </div>
             <div class="work-steps">
                 <div class="work-step"><div class="step-no">01 / MONITOR</div><svg class="icon"><use href="#i-activity"/></svg><h3>Pantau Kondisi</h3><p>Lihat perubahan parameter dan informasi equipment.</p></div>
@@ -412,12 +528,12 @@
         </div>
     </section>
     <section class="section" aria-label="Ajakan akses modul">
-        <div class="container"><div class="end-banner"><div><span class="section-overline">Machine Health Workspace</span><h2>Informasi kondisi alat dalam satu portal.</h2><p>Akses modul yang telah terhubung melalui navigasi utama atau daftar modul.</p></div>
+        <div class="container"><div class="end-banner"><div><span class="section-overline">Machine Health Workspace</span><h2>Akses modul Machine Health</h2><p>Pilih modul yang tersedia pada daftar di atas.</p></div>
             <a class="btn primary" href="{{ route('realtime-series.index') }}">Lihat Semua Modul <svg class="icon sm"><use href="#i-arrow"/></svg></a></div></div>
     </section>
 </main>
 <footer class="footer" id="support">
-    <div class="container footer-inner"><div><strong>Machine Health Integrated Operations</strong></div><div>Internal Use Only · {{ date('Y') }}</div></div>
+    <div class="container footer-inner"><div><strong>MACHINE HEALTH <span aria-hidden="true"> - </span> IT SECTION</strong></div><div>Internal Use Only · 2026</div></div>
 </footer>
 <script>
 (function () {
@@ -430,7 +546,6 @@
     const count = document.getElementById('resultCount');
     const empty = document.getElementById('emptyResults');
     let activeFilter = 'all';
-
     function closeMenu() {
         mobilePanel.hidden = true;
         menuButton.setAttribute('aria-expanded', 'false');
@@ -478,7 +593,6 @@
             event.preventDefault(); focusSearch();
         }
     });
-
     const links = Array.from(document.querySelectorAll('.desktop-nav a'));
     if ('IntersectionObserver' in window) {
         const sections = links.map(function (link) {return document.getElementById(link.getAttribute('href').slice(1));}).filter(Boolean);
@@ -491,8 +605,6 @@
         }, {rootMargin: '-18% 0px -65% 0px', threshold: 0});
         sections.forEach(function (section) { observer.observe(section); });
     }
-
-    // Video tidak dimuat pada mode hemat data / reduced motion; tidak ada CDN wajib.
     const video = document.getElementById('heroVideo');
     const videoToggle = document.getElementById('videoToggle');
     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
