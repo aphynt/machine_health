@@ -489,7 +489,7 @@
                                 class="btn btn-success"
                             >
                                 <i class="fi fi-rr-file-excel me-1"></i>
-                                Export Excel
+                                Export CSV
                             </a>
                         </div>
                     </div>

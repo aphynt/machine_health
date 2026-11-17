@@ -156,13 +156,16 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link coming-soon" href="#" data-feature="Trend Historical Data">
+                        <a class="nav-link {{ request()->routeIs('workshop.vhm-historical') ? 'active' : '' }}"
+                           href="{{ route('workshop.vhm-historical') }}">
                             <i class="iconoir-graph-up menu-icon"></i>
                             <span>Trend Historical Data</span>
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link coming-soon" href="#" data-feature="Worst Eq. Rank by FOCUS">
+                        <a class="nav-link {{ request()->routeIs('workshop.machine-health-ranking') ? 'active' : '' }}"
+                           href="{{ route('workshop.machine-health-ranking') }}">
                             <i class="iconoir-warning-triangle menu-icon"></i>
                             <span>Worst Eq. Rank by FOCUS</span>
                         </a>
@@ -206,30 +209,34 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link coming-soon" href="#" data-feature="Komatsu Fault Code Raw">
+                       <a class="nav-link {{ request()->routeIs('komatsu.fault-code.raw-data') ? 'active' : '' }}"
+                           href="{{ route('komatsu.fault-code.raw-data') }}">
                             <i class="iconoir-activity menu-icon"></i>
                             <span>Komatsu Fault Code Raw</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link coming-soon" href="#" data-feature="Caterpillar Last Updated JSON File 20Hours">
+                        <a class="nav-link {{ request()->routeIs('caterpillar.vims-last-update') ? 'active' : '' }}"
+                           href="{{ route('caterpillar.vims-last-update') }}">
                             <i class="iconoir-activity menu-icon"></i>
-                            <span>Caterpillar Last Updated JSON File 20Hours</span>
+                            <span>Caterpillar Last Updated</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link coming-soon" href="#" data-feature="Komatsu Last Updated VHMS 20Hours">
+                        <a class="nav-link {{ request()->routeIs('komatsu.vhms-last-update') ? 'active' : '' }}"
+                           href="{{ route('komatsu.vhms-last-update') }}">
                             <i class="iconoir-activity menu-icon"></i>
-                            <span>Komatsu Last Updated VHMS 20Hours</span>
+                            <span>Komatsu Last Updated</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link coming-soon" href="#" data-feature="Periodic Operator Induced YTD Resume">
+                         <a class="nav-link {{ request()->routeIs('workshop.periodic-operator-induced') ? 'active' : '' }}"
+                           href="{{ route('workshop.periodic-operator-induced') }}">
                             <i class="iconoir-activity menu-icon"></i>
-                            <span>Periodic Operator Induced YTD Resume</span>
+                            <span>Periodic Operator Induced YtD Resume</span>
                         </a>
                     </li>
 

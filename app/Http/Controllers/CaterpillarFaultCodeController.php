@@ -13,11 +13,6 @@ class CaterpillarFaultCodeController extends Controller
 {
     private const PER_PAGE = 50;
 
-    /**
-     * ================================================================
-     * MAIN PAGE
-     * ================================================================
-     */
     public function index(Request $request)
     {
         [$startDate, $stopDate] = $this->getDateRange($request);
